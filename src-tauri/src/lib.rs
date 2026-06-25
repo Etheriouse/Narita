@@ -1,5 +1,9 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 
+// zeroize pour clear la ram apres dechiffrement mdp
+// ssecrets avec mlock pour degager la pagination
+// et mprotect pour segfault si qql dautre essaye de lire
+
 
 // Like @Override its a identifier for function that can call by front
 #[tauri::command]

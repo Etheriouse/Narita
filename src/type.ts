@@ -1,0 +1,1 @@
+export type Worder = Record<string, Record<string, string>>;
