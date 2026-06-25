@@ -1,9 +1,11 @@
-# Tauri + React + Typescript
-
+# Narita
 Password manager
 
-## Icon
+## Stack
+Tauri + React + TypeScript
 
-navbar icon svg from {lucide}[https://lucide.dev/]
 
-default key, from {flaticon}[https://www.flaticon.com]
+## Icons
+
+* Navbar icon (SVG) : [Lucide](https://lucide.dev)
+* Default key icon : [Flaticon](https://www.flaticon.com)
