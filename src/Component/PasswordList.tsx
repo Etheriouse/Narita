@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { invoke } from "../invoke";
 import './css/PasswordList.css';
 

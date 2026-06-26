@@ -99,6 +99,8 @@ const MockApi = {
                 notes: "Notes",
                 src: "",
                 rootFolder: 'Racine',
+                vaultPassword: 'Mots de passe de coffre',
+                unlock: "Deverouiller"
             },
             en: {
                 title: "Title",
@@ -107,6 +109,8 @@ const MockApi = {
                 notes: "Notes",
                 src: "",
                 rootFolder: 'Root',
+                vaultPassword: 'Vault password',
+                unlock: "Unlock",
             }
         }
     },
@@ -157,5 +161,8 @@ const MockApi = {
     },
     save_folder_tree: (folder: Folder) => {
         console.log(folder);
+    },
+    verify_hash_password: (password: string) => {
+        return password == "sakura";
     }
 }
