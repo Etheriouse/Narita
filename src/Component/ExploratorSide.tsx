@@ -1,6 +1,8 @@
+import './css/ExploratorSide.css'
+
 function ExplortorSide() {
 
-    return <></>
+    return  <div id="explorator-side-main"></div>
 }
 
 export default ExplortorSide;

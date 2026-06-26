@@ -29,12 +29,16 @@ function App() {
     return (
         <>
             {ready ? <><NavBar />
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div id="main-content">
                     <ExplortorSide />
-                    <PasswordList lang={lang} wording={wording} />
-                </div>
-                <button onClick={() => setLang("fr")}>fr</button>
-                <button onClick={() => setLang("en")}>en</button></> : <></>}
+                    <div>
+                        <PasswordList lang={lang} wording={wording} />
+                        
+                    </div>
+                </div></>
+                : <></>}
+            {/* <button onClick={() => setLang("fr")}>fr</button>
+                <button onClick={() => setLang("en")}>en</button></>  */}
         </>
     );
 }

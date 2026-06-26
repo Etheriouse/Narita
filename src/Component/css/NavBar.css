@@ -1,0 +1,75 @@
+#nav-bar-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    flex: 0 0 44px;
+    /* hauteur réaliste desktop */
+    padding: 6px 10px;
+
+    gap: 10px;
+
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+
+    font-family: "Sora", sans-serif;
+}
+
+/* groupes d'icônes */
+.icon-category {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    padding: 2px 8px;
+
+
+    border-right: 1px solid var(--border);
+}
+
+.icon-category:last-child {
+    border-right: none;
+}
+
+/* bouton icône */
+.icon-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    color: var(--text-secondary);
+
+    background: transparent;
+
+    transition: all 0.2s ease;
+}
+
+/* hover style green yuri */
+.icon-nav-bar:hover {
+    background: rgba(106, 217, 111, 0.10);
+    color: var(--primary);
+
+    box-shadow: 0 0 6px rgba(106, 217, 111, 0.18);
+    transform: translateY(-1px);
+}
+
+/* click feedback */
+.icon-nav-bar:active {
+    transform: scale(0.96);
+    background: rgba(106, 217, 111, 0.15);
+    color: var(--primary);
+}
+
+/* icônes SVG */
+.icon-nav-bar svg {
+    width: 28px;
+    height: 28px;
+}
