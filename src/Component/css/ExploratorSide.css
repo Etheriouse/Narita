@@ -1,3 +1,58 @@
 #explorator-side-main {
-    width: 30vw;
+    width: clamp(50px, 30vw, 30vw);
+    overflow: auto;
+}
+
+img {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    padding: 3px;
+}
+
+#folder-root {
+    display: flex;
+}
+
+.folder {
+    display: flex;
+    border-left: 2px solid transparent;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.folder-data {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    gap: 3px;
+}
+
+.folder-childe {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    transform: translateY(-4px);
+
+    transition:
+        max-height 0.35s ease,
+        opacity 0.2s ease,
+        transform 0.5s ease;
+}
+
+.folder-childe.open {
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.folder.selected {
+    background: rgba(106, 217, 111, 0.08);
+    border-left: 2px solid var(--primary);
 }

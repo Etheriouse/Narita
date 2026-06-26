@@ -6,8 +6,7 @@
     flex: 0 0 44px;
     /* hauteur réaliste desktop */
     padding: 6px 10px;
-
-    gap: 10px;
+    padding-left: 0px;
 
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -20,10 +19,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 15px;
 
-    padding: 2px 8px;
-
+    padding: 2px 20px;
 
     border-right: 1px solid var(--border);
 }

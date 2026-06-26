@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { invoke } from "./invoke";
 import "./App.css";
 import NavBar from "./Component/NavBar";
@@ -12,7 +12,8 @@ function App() {
 
     const [lang, setLang] = useState("en");
     const [wording, setWording] = useState({} as Worder);
-
+    const [sEntryUID, setSEntryUID] = useState("-1");
+    const [sFolder, setSFolder] = useState("-1");
 
 
     useEffect(() => {
@@ -30,9 +31,9 @@ function App() {
         <>
             {ready ? <><NavBar />
                 <div id="main-content">
-                    <ExplortorSide />
+                    <ExplortorSide lang={lang} wording={wording} sFolder={sFolder} setSFolder={setSFolder}/>
                     <div>
-                        <PasswordList lang={lang} wording={wording} />
+                        <PasswordList lang={lang} wording={wording} sEntryUID={sEntryUID} setSEntryUID={setSEntryUID} />
                         
                     </div>
                 </div></>

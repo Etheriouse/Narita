@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import { invoke } from "../invoke";
 import './css/PasswordList.css';
 
@@ -17,24 +17,32 @@ interface Password {
 interface Props {
     lang: string;
     wording: Worder;
+    sEntryUID: string;
+    setSEntryUID: React.Dispatch<React.SetStateAction<string>>;
 }
 
-async function clickOnLine(event: React.MouseEvent<HTMLLIElement, MouseEvent>) {
-    // call rust backend to get password, put into press paper for 10s
+// event listenner on window ctrl c
+ // call rust backend to get password, put into press paper for 10s
+
+async function clickOnLine(event: React.MouseEvent<HTMLLIElement, MouseEvent>, uid: React.Dispatch<React.SetStateAction<string>>) {
+    uid(event.currentTarget.dataset.uid || "");
 }
 
-function PasswordList({ lang, wording }: Props) {
+function PasswordList({ lang, wording, sEntryUID, setSEntryUID }: Props) {
 
-    const [passwords, setPasswords] = useState(Array<Password>);
+    const [entrys, setEntrys] = useState(Array<Password>);
     const [passwordsLoaded, setPasswordLoaded] = useState(false);
 
     useEffect(() => {
         async function tmp() {
-            setPasswords(await invoke("get_passwords"));
+            setEntrys(await invoke("get_entrys"));
         }
         tmp().then(() => setPasswordLoaded(true));
+
+        return () => {
+            invoke("save_entrys", entrys);
+        }
     }, []);
-    console.log(wording);
 
     return (
         <div id="main-container-password">
@@ -45,16 +53,15 @@ function PasswordList({ lang, wording }: Props) {
                 <p>{wording[lang].notes}</p>
             </div>
             <div id="password-list">
-                {passwords.map(e => {
-                    return <>
-                        <li onClick={(e)=>clickOnLine(e)} key={e.uid} className="password">
-                            <div><img src={`./assets/icons/${e.src ? e.src : 'default-icon-entry.png'}`}></img>
-                                <p>{e.title}</p></div>
-                            <p>{e.username}</p>
-                            <p>{e.url}</p>
-                            <p>{e.notes}</p>
-                        </li>
-                    </>
+                {entrys.map((e) => {
+                    return <li onClick={(e) => clickOnLine(e, setSEntryUID)} data-uid={e.uid} key={e.uid} className={`password ${sEntryUID==e.uid?"entry-selected":""}`}>
+                        <div><img src={`./assets/icons/${e.src ? e.src : 'default-icon-entry.png'}`}></img>
+                            <p>{e.title}</p></div>
+                        <p>{e.username}</p>
+                        <p>{e.url}</p>
+                        <p>{e.notes}</p>
+                    </li>
+
                 })}
             </div>
         </div>

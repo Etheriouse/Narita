@@ -3,10 +3,11 @@
     --bg: #0f1110;
     --surface: #18201c;
     --surface-hover: #223028;
+    --surface-selected: #2d4f34;
 
     /* Couleurs principales */
     --primary: #6ad96f;
-    --primary-dark: #4aa852;
+    --primary-dark: #419748;
     --accent: #98ff98;
 
     /* Texte */
@@ -50,4 +51,28 @@ body {
     overflow: hidden;
     padding: 15px;
     gap: 15px;
+}
+
+img {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-dark);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
 }
