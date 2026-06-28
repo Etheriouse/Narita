@@ -1,0 +1,51 @@
+{
+    "wording": {
+        "fr": {
+            "title": "Titre",
+            "username": "Nom d'utilisateur",
+            "url": "URL",
+            "notes": "Notes",
+            "rootFolder": "Racine",
+            "vaultPassword": "Mots de passe de coffre",
+            "unlock": "Deverouiller"
+        },
+        "en": {
+            "title": "Title",
+            "username": "Username",
+            "url": "URL",
+            "notes": "Notes",
+            "rootFolder": "Root",
+            "vaultPassword": "Vault password",
+            "unlock": "Unlock",
+            "iconOpen": "Open vault",
+            "iconSave": "Save folder",
+            "iconLock": "Lock vault",
+            "iconAddEntry": "Add entry",
+            "iconModifyEntry": "Modify entry",
+            "iconDeleteEntry": "Delete entry",
+            "iconReadUser": "Copy username",
+            "iconReadPassword": "Copy password",
+            "iconRngPassword": "Generate password",
+            "iconSettings": "Settings",
+            "modEntryadd": "Add an entry",
+            "modEntrymod": "Edit an entry",
+            "modEntrydel": "Delete an entry",
+        },
+        "jp": {
+
+        },
+        "es": {
+            
+        }
+    },
+    "lang": [
+        "fr",
+        "en",
+        "jp",
+        "es"
+    ],
+    "selected-lang": "en",
+    "user-settings": {
+        "width_separator": 2000
+    }
+}

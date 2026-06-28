@@ -1,0 +1,288 @@
+#main-container-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    width: 100%;
+    /* height: 100%; */
+
+    padding: 20px;
+
+    background: var(--bg);
+    overflow-y: auto;
+}
+
+#main-container-entry>p:first-child {
+    margin: 0;
+
+    font-size: 1.1rem;
+    font-weight: 700;
+
+    color: var(--primary);
+
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Layout principal */
+
+#entry-content {
+    display: flex;
+    gap: 24px;
+
+    flex: 1;
+    min-height: 0;
+}
+
+/* ========================= */
+/* Partie gauche             */
+/* ========================= */
+
+#category-div-entry {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+
+    width: 100px;
+    flex-shrink: 0;
+}
+
+#entry-category-editor,
+#icon-category-editor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    height: 100%;
+
+    box-shadow:
+        0 0 10px var(--shadow);
+
+    padding: 15px;
+
+    cursor: pointer;
+}
+
+#entry-category-editor {
+    min-height: 140px;
+}
+
+#icon-category-editor {
+    min-height: 220px;
+}
+
+/* ========================= */
+/* Partie droite             */
+/* ========================= */
+
+#entry-div-entry {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    padding: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 10px var(--shadow);
+
+    min-width: 0;
+}
+
+#entry-div-entry>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: center;
+}
+
+#entry-div-entry p {
+    margin: 0;
+    min-width: 150px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* ========================= */
+/* Inputs                    */
+/* ========================= */
+
+#entry-div-entry input,
+#entry-div-entry textarea {
+    width: 100%;
+    padding: 10px 12px;
+
+    box-sizing: border-box;
+
+    background: var(--bg);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    color: var(--text);
+
+    font-family: inherit;
+    font-size: .95rem;
+
+    transition:
+        border-color .15s ease,
+        box-shadow .15s ease;
+}
+
+#entry-div-entry input:focus,
+#entry-div-entry textarea:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow: 0 0 0 3px rgba(106, 217, 111, .15);
+}
+
+#entry-div-entry textarea {
+    min-height: 180px;
+    resize: none;
+}
+
+/* ========================= */
+/* Notes                     */
+/* ========================= */
+
+#entry-password-notes {
+    flex: 1;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: stretch !important;
+    min-height: 0;
+}
+
+#entry-password-notes textarea {
+    flex: 1;
+    min-height: 0;
+}
+
+/* ========================= */
+/* Boutons password          */
+/* ========================= */
+
+#entry-password-password {
+    /* gap: 10px */
+}
+
+#entry-password-password-eye,
+#entry-password-password-rng {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+
+    padding: 0px 2px;
+
+    cursor: pointer;
+
+    color: var(--text-secondary);
+
+    transition:
+        background .15s ease,
+        color .15s ease,
+        transform .1s ease;
+
+    margin-left: 10px;
+}
+
+#entry-password-password-eye:hover,
+#entry-password-password-rng:hover {
+    background: rgba(106, 217, 111, .12);
+
+    color: var(--primary);
+}
+
+#entry-password-password-eye:active,
+#entry-password-password-rng:active {
+    transform: scale(.95);
+}
+
+#footer-container-entry {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    height: 50px;
+    gap: 15px;
+
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+
+    flex-shrink: 0;
+}
+
+#entry-content {
+    flex: 1;
+    display: flex;
+    gap: 24px;
+
+    min-height: 0;
+    overflow: hidden;
+}
+
+.action-button-entry {
+    padding: .8rem;
+
+    background: var(--primary);
+    color: #091009;
+
+    border: none;
+    border-radius: 8px;
+
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.action-button-entry:hover {
+    background: var(--primary-dark);
+}
+
+#del-container-entry {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    box-shadow:
+        0 0 12px var(--shadow);
+}
+
+#del-container-entry>div {
+    display: flex;
+    gap: 15px;
+}

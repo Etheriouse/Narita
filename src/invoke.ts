@@ -41,9 +41,9 @@ export interface Stat {
 }
 
 function getName(uid: string): Entry {
-    for(const [_folder, array] of Object.entries(entrys)) {
-        for(const ent of array) {
-            if(ent.uid == uid) {
+    for (const [_folder, array] of Object.entries(entrys)) {
+        for (const ent of array) {
+            if (ent.uid == uid) {
                 return ent;
             }
         }
@@ -182,39 +182,7 @@ const MockApi = {
         console.log(entrys);
     },
     wording: (): Worder => {
-        return {
-            fr: {
-                title: "Titre",
-                username: "Nom d'utilisateur",
-                url: "URL",
-                notes: "Notes",
-                rootFolder: 'Racine',
-                vaultPassword: 'Mots de passe de coffre',
-                unlock: "Deverouiller"
-            },
-            en: {
-                title: "Title",
-                username: "Username",
-                url: "URL",
-                notes: "Notes",
-                rootFolder: 'Root',
-                vaultPassword: 'Vault password',
-                unlock: "Unlock",
-                iconOpen: "Open vault",
-                iconSave: "Save folder",
-                iconLock: "Lock vault",
-                iconAddEntry: "Add entry",
-                iconModifyEntry: "Modify entry",
-                iconDeleteEntry: "Delete entry",
-                iconReadUser: "Copy username",
-                iconReadPassword: "Copy password",
-                iconRngPassword: "Generate password",
-                iconSettings: "Settings",
-                modEntryadd: "Add an entry",
-                modEntrymod: "Edit an entry",
-                modEntrydel: "Delete an entry",
-            }
-        }
+        return Settings["wording"] as Worder;
     },
     get_folder_tree: (): Folder => {
         return {
@@ -270,13 +238,98 @@ const MockApi = {
     get_one_entry: (folder_uid: string, uid: string): Entry => {
         return getName(uid);
     },
+    save_one_entry: (folder_uid: string, uid: string): void => {
+
+    },
+    del_one_entry: (folder_uid: string, uid: string): void => {
+
+    },
     save_stat: (stat: Stat) => {
 
     },
     load_stat: (): Stat => {
-        return {
-            width_separator: 4000
-        } as Stat
+        return Settings["user-settings"] as Stat;
+    },
+    get_uid: (): string => {
+        return 'trust-' + (new Date().getMilliseconds());
     }
 
+}
+
+const Settings = {
+    "wording": {
+        "fr": {
+            "title": "Titre",
+            "username": "Nom d'utilisateur",
+            "password": "Mots de passe",
+            "url": "URL",
+            "notes": "Notes",
+            "rootFolder": "Racine",
+            "vaultPassword": "Mots de passe de coffre",
+            "unlock": "Deverouiller",
+            "iconOpen": "Ouvrir le coffre",
+            "iconSave": "Save folder",
+            "iconLock": "Lock le coffre",
+            "iconAddEntry": "Ajouter une entrer",
+            "iconModifyEntry": "Modifier une entrer",
+            "iconDeleteEntry": "Suprimer une entrer",
+            "iconReadUser": "Copier le nom d'utilisateur",
+            "iconReadPassword": "Copier le mots de passe",
+            "iconRngPassword": "Generer un mots de passe",
+            "iconSettings": "Paramtre",
+            "modEntryadd": "Ajouter une entrer",
+            "modEntrymod": "Modifier une entrer",
+            "modEntrydel": "Supprimer une entrer",
+            "exit": "Quitter",
+            "apply": "Appliquer",
+            "areUsureAboutThat": "Are u sure about that ?",
+            "yesDel": "Yes i do",
+            "noNevermind": "Hum, non nervermind",
+
+        },
+        "en": {
+            "title": "Title",
+            "username": "Username",
+            "password": "Password",
+            "url": "URL",
+            "notes": "Notes",
+            "rootFolder": "Root",
+            "vaultPassword": "Vault password",
+            "unlock": "Unlock",
+            "iconOpen": "Open vault",
+            "iconSave": "Save folder",
+            "iconLock": "Lock vault",
+            "iconAddEntry": "Add entry",
+            "iconModifyEntry": "Modify entry",
+            "iconDeleteEntry": "Delete entry",
+            "iconReadUser": "Copy username",
+            "iconReadPassword": "Copy password",
+            "iconRngPassword": "Generate password",
+            "iconSettings": "Settings",
+            "modEntryadd": "Add an entry",
+            "modEntrymod": "Edit an entry",
+            "modEntrydel": "Delete an entry",
+            "exit": "Exit",
+            "apply": "Apply",
+            "areUsureAboutThat": "T'es sur de toi?",
+            "yesDel": "Oui je le suis",
+            "noNevermind": "Hum, enfaite non",
+        },
+        "jp": {
+
+        },
+        "es": {
+
+        }
+    },
+    "lang": [
+        "fr",
+        "en",
+        "jp",
+        "es"
+    ],
+    "selected-lang": "en",
+    "user-settings": {
+        "width_separator": 2000
+    }
 }

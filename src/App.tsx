@@ -14,7 +14,7 @@ function App() {
 
     const [ready, setReady] = useState(false);
 
-    const [lang, setLang] = useState("en");
+    const [lang, setLang] = useState("fr");
     const [wording, setWording] = useState({} as Worder);
     const [sEntryUID, setSEntryUID] = useState("-1");
     const [sFolder, setSFolder] = useState(uid_root);
@@ -100,7 +100,7 @@ function App() {
                     return <RngPassword lang={lang} wording={wording} />
 
                 case "entry":
-                    return <Entry lang={lang} wording={wording} mod={args[1]} selectedUID={sEntryUID} sFolder={sFolder} />
+                    return <Entry lang={lang} wording={wording} mod={args[1]} selectedUID={sEntryUID} sFolder={sFolder} setWindow={setWindow} setSelectedUID={setSEntryUID} />
 
                 case "main":
                     return <>
@@ -121,7 +121,7 @@ function App() {
                 !unlock ? (
                     <Login lang={lang} wording={wording} unlock={setUnlock} />
                 ) : (<>
-                    <NavBar lang={lang} wording={wording} setWindow={setWindow} unlock={setUnlock} entrys={entrys} sFolder={sFolder} />
+                    <NavBar lang={lang} wording={wording} setWindow={setWindow} unlock={setUnlock} entrys={entrys} sFolder={sFolder} sEntry={sEntryUID} setSEntryUID={setSEntryUID}/>
                     <div id="main-content">
                         {renderMainContent()}
                     </div>
