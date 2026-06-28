@@ -1,5 +1,8 @@
 #explorator-side-main {
-    width: clamp(50px, 30vw, 30vw);
+    /* width: clamp(50px, 30vw, 30vw); */
+    /* width: auto; */
+    flex: 1;
+    min-width: 0;
     overflow: auto;
 }
 

@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { Worder } from '../type';
 import './css/ExploratorSide.css'
-import { invoke } from '../invoke';
+import { invoke, uid_root } from '../invoke';
 
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -84,8 +84,8 @@ function ExplortorSide({ lang, wording, sFolder, setSFolder }: Props) {
     }, []);
 
     return <div id="explorator-side-main">
-        <div id='folder-root' className={`folder ${'-1' == sFolder?'selected':''}`}>
-            <div onClick={()=>setSFolder('-1')} className='folder-data'>
+        <div id='folder-root' className={`folder ${uid_root == sFolder?'selected':''}`}>
+            <div onClick={()=>setSFolder(uid_root)} className='folder-data'>
                 <div className='folder-icon-open' onClick={() => {
                     setRootOpen(!rootOpen);
                 }} >
