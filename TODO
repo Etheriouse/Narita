@@ -1,0 +1,9 @@
+- faire le select d'icon avec dispo de base et perso dans entry
+- interface password rng 
+- interface settings
+- le backend en rust
+    - les fonction
+    - les hash
+    - les ouverture d'explorateur de fichier
+    - les ouverture de fenetre
+- interface creation de vault
