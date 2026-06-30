@@ -176,10 +176,6 @@
 /* Boutons password          */
 /* ========================= */
 
-#entry-password-password {
-    /* gap: 10px */
-}
-
 #entry-password-password-eye,
 #entry-password-password-rng {
     display: flex;

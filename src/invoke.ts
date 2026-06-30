@@ -285,7 +285,17 @@ const Settings = {
             "areUsureAboutThat": "Are u sure about that ?",
             "yesDel": "Yes i do",
             "noNevermind": "Hum, non nervermind",
-
+            "ambigousCharSettings": "Exclude ambigous char",
+            "asciiExtendCharSettings": "Include extended ASCII",
+            "spaceCharSettings": "Include space char",
+            "donotinclude": "Exclude these char",
+            "doinclude": "Include these char",
+            "lengthPassword": "Longueur",
+            "entropy": "Entropie",
+            "possiblity": "Posibliter",
+            "timecrackReel": "Temps reel",
+            "timecrackTheo": "Temps theorique",
+            "years": "ans",
         },
         "en": {
             "title": "Title",
@@ -314,6 +324,13 @@ const Settings = {
             "areUsureAboutThat": "T'es sur de toi?",
             "yesDel": "Oui je le suis",
             "noNevermind": "Hum, enfaite non",
+            "ambigousCharSettings": "Exclure les charactere ambigus",
+            "asciiExtendCharSettings": "Inclure l'ASCII etendu",
+            "spaceCharSettings": "Inclure le charactere espace",
+            "donotinclude": "Inclure ces charactere",
+            "doinclude": "Exclure ces charactrere",
+            "lengthPassword": "Lenght",
+
         },
         "jp": {
 
