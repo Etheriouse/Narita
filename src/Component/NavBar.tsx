@@ -46,11 +46,11 @@ function NavBar({ lang, wording, setWindow, unlock, entrys, sFolder, sEntry, set
                 <span className="tooltip">{wording[lang].iconAddEntry}</span>
                 <FilePlusCornerIcon id="add-a-entry" />
             </div>
-            <div className="icon-nav-bar" onClick={_e => {if(sEntry === "-1") setSEntryUID(entrys[0].uid); setWindow("entry=mod");}}>
+            <div className="icon-nav-bar" onClick={_e => {if(sEntry === "-1") if(entrys[0]) {setSEntryUID(entrys[0].uid); setWindow("entry=mod");}}}>
                 <span className="tooltip">{wording[lang].iconModifyEntry}</span>
                 <FilePenIcon id="modify-a-entry" />
             </div>
-            <div className="icon-nav-bar" onClick={_e => {if(sEntry === "-1") setSEntryUID(entrys[0].uid); setWindow("entry=del");}}>
+            <div className="icon-nav-bar" onClick={_e => {if(sEntry === "-1") if(entrys[0]) {setSEntryUID(entrys[0].uid); setWindow("entry=del");}}}>
                 <span className="tooltip">{wording[lang].iconDeleteEntry}</span>
                 <Trash2Icon id="delete-a-entry" />
             </div>

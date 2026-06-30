@@ -9,6 +9,8 @@ import NavBar from "./Component/NavBar";
 import ExplortorSide from "./Component/ExploratorSide";
 import PasswordList from "./Component/PasswordList";
 import Settings from "./Component/Settings";
+import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
+
 
 function App() {
 
@@ -25,7 +27,7 @@ function App() {
 
     const [stat, setStat] = useState({
         width_separator: 0.8 * window.innerWidth
-    }as Stat);
+    } as Stat);
     const separatorDiv = useRef<HTMLDivElement>(null);
     const resizing = useRef(false);
     const good = useRef(false);
@@ -98,10 +100,10 @@ function App() {
                     return <Settings lang={lang} wording={wording} />
 
                 case "rng-password":
-                    return <RngPassword lang={lang} wording={wording} setPasswordResult={setRngPassword}/>
+                    return <RngPassword lang={lang} wording={wording} setPasswordResult={setRngPassword} intoEntry={false}/>
 
                 case "entry":
-                    return <Entry lang={lang} wording={wording} mod={args[1]} selectedUID={sEntryUID} sFolder={sFolder} setWindow={setWindow} setSelectedUID={setSEntryUID} rngPassword={rngPassword} setRngPassword={setRngPassword} />
+                    return <Entry lang={lang} wording={wording} mod={args[1]} selectedUID={sEntryUID} sFolder={sFolder} setWindow={setWindow} setSelectedUID={setSEntryUID} />
 
                 case "main":
                     return <>
@@ -122,7 +124,7 @@ function App() {
                 !unlock ? (
                     <Login lang={lang} wording={wording} unlock={setUnlock} />
                 ) : (<>
-                    <NavBar lang={lang} wording={wording} setWindow={setWindow} unlock={setUnlock} entrys={entrys} sFolder={sFolder} sEntry={sEntryUID} setSEntryUID={setSEntryUID}/>
+                    <NavBar lang={lang} wording={wording} setWindow={setWindow} unlock={setUnlock} entrys={entrys} sFolder={sFolder} sEntry={sEntryUID} setSEntryUID={setSEntryUID} />
                     <div id="main-content">
                         {renderMainContent()}
                     </div>

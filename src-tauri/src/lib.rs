@@ -22,42 +22,48 @@ type Wording = HashMap<String, HashMap<String, String>>;
 // Like @Override its a identifier for function that can call by front
 #[tauri::command]
 fn get_passwords() -> Vec<Password> {
-    return vec![Password {
-        title: "Google".into(),
-        username: "user@gmail.com".into(),
-        url: "https://google.com".into(),
-        notes: "test".into(),
-        src: "".into(),
-        uid: "1".into(),
-    }, Password {
-        title: "Google".into(),
-        username: "user@gmail.com".into(),
-        url: "https://google.com".into(),
-        notes: "test".into(),
-        src: "".into(),
-        uid: "2".into(),
-    }, Password {
-        title: "Google".into(),
-        username: "user@gmail.com".into(),
-        url: "https://google.com".into(),
-        notes: "test".into(),
-        src: "".into(),
-        uid: "32".into(),
-    }, Password {
-        title: "Google".into(),
-        username: "user@gmail.com".into(),
-        url: "https://google.com".into(),
-        notes: "test".into(),
-        src: "".into(),
-        uid: "4".into(),
-    }, Password {
-        title: "Google".into(),
-        username: "user@gmail.com".into(),
-        url: "https://google.com".into(),
-        notes: "test".into(),
-        src: "".into(),
-        uid: "5".into(),
-    }];
+    return vec![
+        Password {
+            title: "Google".into(),
+            username: "user@gmail.com".into(),
+            url: "https://google.com".into(),
+            notes: "test".into(),
+            src: "".into(),
+            uid: "1".into(),
+        },
+        Password {
+            title: "Google".into(),
+            username: "user@gmail.com".into(),
+            url: "https://google.com".into(),
+            notes: "test".into(),
+            src: "".into(),
+            uid: "2".into(),
+        },
+        Password {
+            title: "Google".into(),
+            username: "user@gmail.com".into(),
+            url: "https://google.com".into(),
+            notes: "test".into(),
+            src: "".into(),
+            uid: "32".into(),
+        },
+        Password {
+            title: "Google".into(),
+            username: "user@gmail.com".into(),
+            url: "https://google.com".into(),
+            notes: "test".into(),
+            src: "".into(),
+            uid: "4".into(),
+        },
+        Password {
+            title: "Google".into(),
+            username: "user@gmail.com".into(),
+            url: "https://google.com".into(),
+            notes: "test".into(),
+            src: "".into(),
+            uid: "5".into(),
+        },
+    ];
 }
 
 #[tauri::command]
@@ -78,12 +84,60 @@ fn wording() -> Wording {
     return root;
 }
 
+#[tauri::command]
+fn get_entrys() -> i32 {
+    return -1;
+}
+
+#[tauri::command]
+fn save_entrys() -> i32 {
+    return -1;
+}
+
+#[tauri::command]
+fn get_folder_tree() -> i32 {
+    return -1;
+}
+#[tauri::command]
+fn save_folder_tree() -> i32 {
+    return -1;
+}
+#[tauri::command]
+fn verify_hash_password() -> i32 {
+    return -1;
+}
+#[tauri::command]
+fn get_one_entry() -> i32 {
+    return -1;
+}
+#[tauri::command]
+fn save_one_entry() -> i32 {
+    return -1;
+}
+#[tauri::command]
+fn del_one_entry() -> i32 {
+    return -1;
+}
+#[tauri::command]
+fn save_stat() -> i32 {
+    return -1;
+}
+
+#[tauri::command]
+fn load_stat() -> i32 {
+    return -1;
+}
+#[tauri::command]
+fn get_uid() -> i32 {
+    return -1;
+}
+
 // Don't touch, tauri library
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![get_passwords, wording])
+        .invoke_handler(tauri::generate_handler![get_passwords, wording, get_entrys, save_entrys, get_folder_tree, save_folder_tree, verify_hash_password, get_one_entry, save_one_entry, del_one_entry, save_stat, load_stat, get_uid])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

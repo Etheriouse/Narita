@@ -6,32 +6,6 @@ import { Folder } from "./ExploratorSide";
 import { DicesIcon, Eye, EyeClosed, Image, PencilLine } from "lucide-react";
 import RngPassword from './RngPassword';
 
-/** a tester sur window pck tauri
- import { WebviewWindow } from '@tauri-apps/api/window';
-
-const createSmallWindow = async () => {
-  try {
-    const smallWindow = new WebviewWindow('small_window_label', {
-      url: 'path/to/your/html.html',
-      title: 'Small Window',
-      // Optional: Configure size and decorations
-      width: 400,
-      height: 300,
-      decorations: false,
-    });
-
-    smallWindow.once('tauri://created', () => {
-      console.log('Small window created successfully');
-    });
-
-    smallWindow.once('tauri://error', (e) => {
-      console.error('Error creating small window:', e);
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
- */
 
 interface Props {
     lang: string,
@@ -41,11 +15,9 @@ interface Props {
     sFolder: string,
     setWindow: (e: string) => void;
     setSelectedUID: (e: string) => void;
-    rngPassword: string;
-    setRngPassword: (e: string) => void;
 }
 
-function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelectedUID, rngPassword, setRngPassword }: Props) {
+function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelectedUID }: Props) {
 
     const passwordInput = useRef<HTMLInputElement>(null);
     const [entry, setEntry] = useState({} as _Entry);
@@ -53,6 +25,10 @@ function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelecte
     const [modifyIcon, setModifyIcon] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [delMod, setDelMod] = useState(false);
+
+    const [passwordUnhash, setPasswordUnhash] = useState("**********");
+
+    const [showRng, setShowRng] = useState(false);
 
     const entryCategoryEditor = useRef<HTMLDivElement>(null);
     const iconCategoryEditor = useRef<HTMLDivElement>(null);
@@ -67,10 +43,6 @@ function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelecte
         return "undefined";
     }
 
-    function openWindowRngPassword() {
-        return <RngPassword lang={lang} wording={wording} setPasswordResult={setRngPassword}/>
-    }
-
     async function exit(save: boolean, uid_del?: string) {
         if (save) {
             if (mod === "add") {
@@ -82,16 +54,15 @@ function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelecte
             }
             await invoke("save_one_entry", sFolder, selectedUID);
         }
-        if(uid_del) {
+        if (uid_del) {
             await invoke("del_one_entry", sFolder, selectedUID);
             setSelectedUID("-1");
-            
+
         }
         setWindow("main");
     }
 
     useEffect(() => {
-        if (passwordInput.current) passwordInput.current.value = '**********';
         async function setup() {
             if (mod === "mod" || mod === "del") {
                 setEntry(await invoke('get_one_entry', sFolder, selectedUID));
@@ -122,7 +93,7 @@ function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelecte
         setup();
     }, [mod]);
 
-    return <div id="main-container-entry">
+    return <> <div id="main-container-entry">
         <p>{sFolderName} • {entry.title} • {wording[lang]["modEntry" + mod]}</p>
         {delMod ? <div id="del-container-entry">
             <p>{wording[lang].areUsureAboutThat}</p>
@@ -149,11 +120,11 @@ function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelecte
                             <p>{wording[lang].username}</p> <input></input>
                         </div>
                         <div id="entry-password-password">
-                            <p>{wording[lang].password}</p> <input type={showPassword ? "text" : "password"} ref={passwordInput}></input>
+                            <p>{wording[lang].password}</p> <input type={showPassword ? "text" : "password"} ref={passwordInput} value={passwordUnhash} onChange={e => setPasswordUnhash(e.target.value)}></input>
                             <div id="entry-password-password-eye" onClick={_e => setShowPassword(!showPassword)}>
                                 {!showPassword ? <Eye /> : <EyeClosed />}
                             </div>
-                            <div id="entry-password-password-rng" onClick={_e => openWindowRngPassword()} >
+                            <div id="entry-password-password-rng" onClick={_e => setShowRng(true)}>
                                 <DicesIcon />
                             </div>
                         </div>
@@ -172,6 +143,22 @@ function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelecte
             </>
         }
     </div>
+        {showRng && (
+
+            <div className="modal-overlay">
+                <div id="back-dark"></div>
+                <div className="modal">
+                    <RngPassword
+                        lang={lang}
+                        wording={wording}
+                        setPasswordResult={setPasswordUnhash}
+                        intoEntry={true}
+                    />
+                    <button id="exit-password-rng-entry" onClick={_ => setShowRng(false)}>{wording[lang].confirmRngPassword}</button>
+                </div>
+            </div>
+        )}
+    </>
 }
 
 export default Entry;

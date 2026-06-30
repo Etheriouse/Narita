@@ -20,7 +20,7 @@ interface Props {
 // event listenner on window ctrl c
 // call rust backend to get password, put into press paper for 10s
 
-function PasswordList({ lang, wording, sEntryUID, setSEntryUID, sFolder, entrys, setEntrys, stat , setWindow }: Props) {
+function PasswordList({ lang, wording, sEntryUID, setSEntryUID, sFolder, entrys, setEntrys, stat, setWindow }: Props) {
 
     const [passwordsLoaded, setPasswordLoaded] = useState(false);
 
@@ -37,7 +37,7 @@ function PasswordList({ lang, wording, sEntryUID, setSEntryUID, sFolder, entrys,
         setEntrys(await invoke("get_entrys", sFolder));
     }
 
-    
+
     useEffect(() => {
         renderPassword().then(() => setPasswordLoaded(true));
         return () => {
@@ -46,7 +46,7 @@ function PasswordList({ lang, wording, sEntryUID, setSEntryUID, sFolder, entrys,
     }, [sFolder, entrys]);
 
     return (
-        <div id="main-container-password" style={{width: (stat.width_separator+'px')}}>
+        <div id="main-container-password" style={{ width: (stat.width_separator + 'px') }}>
             <div id="password-main-bar">
                 <p>{wording[lang].title}</p>
                 <p>{wording[lang].username}</p>
@@ -54,16 +54,18 @@ function PasswordList({ lang, wording, sEntryUID, setSEntryUID, sFolder, entrys,
                 <p>{wording[lang].notes}</p>
             </div>
             <div id="password-list">
-                {entrys.map((e) => {
-                    return <li onDoubleClick={e => openLine(e)} onClick={(e) => clickOnLine(e)} data-uid={e.uid} key={e.uid} className={`password ${sEntryUID == e.uid ? "entry-selected" : ""}`}>
-                        <div><img src={`./assets/icons/${e.src ? e.src : 'default-icon-entry.png'}`}></img>
-                            <p>{e.title}</p></div>
-                        <p>{e.username}</p>
-                        <p>{e.url}</p>
-                        <p>{e.notes}</p>
-                    </li>
+                {
+                    entrys.length ? (entrys.map((e) => {
+                        return <li onDoubleClick={e => openLine(e)} onClick={(e) => clickOnLine(e)} data-uid={e.uid} key={e.uid} className={`password ${sEntryUID == e.uid ? "entry-selected" : ""}`}>
+                            <div><img src={`./assets/icons/${e.src ? e.src : 'default-icon-entry.png'}`}></img>
+                                <p>{e.title}</p></div>
+                            <p>{e.username}</p>
+                            <p>{e.url}</p>
+                            <p>{e.notes}</p>
+                        </li>
 
-                })}
+                    })) : <></>
+                }
             </div>
         </div>
     );

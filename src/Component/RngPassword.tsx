@@ -7,13 +7,14 @@ interface Props {
     lang: string;
     wording: Worder;
     setPasswordResult: (s: string) => void;
+    intoEntry: boolean;
 }
 
 function getExtAscii() {
     return "€¢£¥§¤©®¬±µ¶°¿¡«»×÷";
 }
 
-function RngPassword({ lang, wording, setPasswordResult }: Props) {
+function RngPassword({ lang, wording, setPasswordResult, intoEntry }: Props) {
 
     const [useSpace, setUseSpace] = useState(false);
     const [useAmbigous, setUseAmbigous] = useState(true);
@@ -56,6 +57,10 @@ function RngPassword({ lang, wording, setPasswordResult }: Props) {
             .filter(c => useAmbigous || !"ilI1O0".includes(c)).filter(c => !notUseThis.includes(c)).join('');
     }
 
+    function getShanonEntropy() {
+
+    }
+
     function getPossibility() {
         return Math.pow(2, entropy);
     }
@@ -66,7 +71,7 @@ function RngPassword({ lang, wording, setPasswordResult }: Props) {
     }
 
     function getTimeCracYearsR() {
-        const s = getPossibility() / (R*2);
+        const s = getPossibility() / (R * 2);
         return s / 31556952;
     }
 
@@ -88,25 +93,31 @@ function RngPassword({ lang, wording, setPasswordResult }: Props) {
 
     }, [reset, Upper, Lower, Num, Symbol, Punctu, Bracks, Quotes, Maths, L, notUseThis, useThis, useSpace, useAmbigous, useExtAscii])
 
+    useEffect(() => {
+        if (!intoEntry) return;
+        setPasswordResult(result);
+    }, [result, intoEntry]);
     const entropy = useMemo(() => {
         const Pool = getPool();
         return result.length * Math.log2(Pool.length || 1);
+
     }, [result, Upper, Lower, Num, Symbol, Punctu, Bracks, Quotes, Maths, L, notUseThis, useThis, useSpace, useAmbigous, useExtAscii]);
 
-    return <div id="rng-container-main">
+    return <div id="rng-container-main" className={intoEntry ? "rng-container-main-into-entry" : ""}>
         <div id="result-generate">
             <div id="input-generate">
                 <input value={result} onChange={e => setResult(e.target.value)}></input>
                 <div onClick={_ => setReset(reset + 1)}>
                     <Repeat />
                 </div>
-                <div>
+                <div >
                     <NotepadText />
                 </div>
             </div>
             <div id="stat-generatde">
                 <div id="math-stat-generated">
                     <p>{`${wording[lang].entropy}: ${entropy.toFixed(2)}bits`}</p>
+                    <p>{`${wording[lang].shanonEntropy}: ${getShanonEntropy()}bits`}</p>
                     <p>{`${wording[lang].possiblity}: ${getPossibility().toFixed(2)}`}</p>
                     <p>{`${wording[lang].timecrackTheo}: ${getTimeCracYears().toFixed(2)} ${wording[lang].years} `}</p>
                     <p>{`${wording[lang].timecrackReel}: ${getTimeCracYearsR().toFixed(2)} ${wording[lang].years}`}</p>
