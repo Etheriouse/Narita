@@ -6,13 +6,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 interface Props {
     lang: string;
     wording: Worder;
+    setPasswordResult: (s: string) => void;
 }
 
 function getExtAscii() {
     return "€¢£¥§¤©®¬±µ¶°¿¡«»×÷";
 }
 
-function RngPassword({ lang, wording }: Props) {
+function RngPassword({ lang, wording, setPasswordResult }: Props) {
 
     const [useSpace, setUseSpace] = useState(false);
     const [useAmbigous, setUseAmbigous] = useState(true);
@@ -166,7 +167,6 @@ function RngPassword({ lang, wording }: Props) {
                 </label>
             </div>
         </div>
-
     </div>
 }
 

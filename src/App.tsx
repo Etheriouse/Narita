@@ -21,6 +21,7 @@ function App() {
     const [_window, setWindow] = useState("main");
     const [unlock, setUnlock] = useState(true);
     const [entrys, setEntrys] = useState([] as Array<_Entry>);
+    const [rngPassword, setRngPassword] = useState("");
 
     const [stat, setStat] = useState({
         width_separator: 0.8 * window.innerWidth
@@ -97,10 +98,10 @@ function App() {
                     return <Settings lang={lang} wording={wording} />
 
                 case "rng-password":
-                    return <RngPassword lang={lang} wording={wording} />
+                    return <RngPassword lang={lang} wording={wording} setPasswordResult={setRngPassword}/>
 
                 case "entry":
-                    return <Entry lang={lang} wording={wording} mod={args[1]} selectedUID={sEntryUID} sFolder={sFolder} setWindow={setWindow} setSelectedUID={setSEntryUID} />
+                    return <Entry lang={lang} wording={wording} mod={args[1]} selectedUID={sEntryUID} sFolder={sFolder} setWindow={setWindow} setSelectedUID={setSEntryUID} rngPassword={rngPassword} setRngPassword={setRngPassword} />
 
                 case "main":
                     return <>

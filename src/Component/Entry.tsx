@@ -4,6 +4,34 @@ import { Worder } from "../type";
 import { Entry as _Entry, invoke, uid_root } from "../invoke";
 import { Folder } from "./ExploratorSide";
 import { DicesIcon, Eye, EyeClosed, Image, PencilLine } from "lucide-react";
+import RngPassword from './RngPassword';
+
+/** a tester sur window pck tauri
+ import { WebviewWindow } from '@tauri-apps/api/window';
+
+const createSmallWindow = async () => {
+  try {
+    const smallWindow = new WebviewWindow('small_window_label', {
+      url: 'path/to/your/html.html',
+      title: 'Small Window',
+      // Optional: Configure size and decorations
+      width: 400,
+      height: 300,
+      decorations: false,
+    });
+
+    smallWindow.once('tauri://created', () => {
+      console.log('Small window created successfully');
+    });
+
+    smallWindow.once('tauri://error', (e) => {
+      console.error('Error creating small window:', e);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+ */
 
 interface Props {
     lang: string,
@@ -13,9 +41,11 @@ interface Props {
     sFolder: string,
     setWindow: (e: string) => void;
     setSelectedUID: (e: string) => void;
+    rngPassword: string;
+    setRngPassword: (e: string) => void;
 }
 
-function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelectedUID }: Props) {
+function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelectedUID, rngPassword, setRngPassword }: Props) {
 
     const passwordInput = useRef<HTMLInputElement>(null);
     const [entry, setEntry] = useState({} as _Entry);
@@ -38,7 +68,7 @@ function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelecte
     }
 
     function openWindowRngPassword() {
-
+        return <RngPassword lang={lang} wording={wording} setPasswordResult={setRngPassword}/>
     }
 
     async function exit(save: boolean, uid_del?: string) {
