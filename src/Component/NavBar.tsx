@@ -1,7 +1,7 @@
 import { FolderOpenDotIcon, SaveIcon, FileLockIcon, FilePlusCornerIcon, FilePenIcon, Trash2Icon, UserPlusIcon, UserKeyIcon, DicesIcon, SettingsIcon } from 'lucide-react';
 import './css/NavBar.css';
 import { Worder } from '../type';
-import { Entry, invoke } from '../invoke';
+import { Entry, invoke, not_uid } from '../invoke';
 
 interface Props {
     lang: string,
@@ -22,6 +22,11 @@ function NavBar({ lang, wording, setWindow, unlock, entrys, sFolder, sEntry, set
 
     function saveEntry() {
         invoke("save_entrys", entrys, sFolder);
+    }
+
+    function openEntry(mod: string) {
+        if (sEntry !== not_uid) setWindow(mod);
+        if (!!entrys[0]) { setSEntryUID(entrys[0].uid); setWindow(mod); }
     }
 
     return <div id="nav-bar-main">
@@ -46,11 +51,11 @@ function NavBar({ lang, wording, setWindow, unlock, entrys, sFolder, sEntry, set
                 <span className="tooltip">{wording[lang].iconAddEntry}</span>
                 <FilePlusCornerIcon id="add-a-entry" />
             </div>
-            <div className="icon-nav-bar" onClick={_e => {if(sEntry === "-1") if(entrys[0]) {setSEntryUID(entrys[0].uid); setWindow("entry=mod");}}}>
+            <div className="icon-nav-bar" onClick={_e => openEntry("entry=mod")}>
                 <span className="tooltip">{wording[lang].iconModifyEntry}</span>
                 <FilePenIcon id="modify-a-entry" />
             </div>
-            <div className="icon-nav-bar" onClick={_e => {if(sEntry === "-1") if(entrys[0]) {setSEntryUID(entrys[0].uid); setWindow("entry=del");}}}>
+            <div className="icon-nav-bar" onClick={_e => openEntry("entry=del")}>
                 <span className="tooltip">{wording[lang].iconDeleteEntry}</span>
                 <Trash2Icon id="delete-a-entry" />
             </div>

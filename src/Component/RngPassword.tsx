@@ -58,7 +58,7 @@ function RngPassword({ lang, wording, setPasswordResult, intoEntry }: Props) {
     }
 
     function getShanonEntropy() {
-
+        return -1;
     }
 
     function getPossibility() {
@@ -116,11 +116,11 @@ function RngPassword({ lang, wording, setPasswordResult, intoEntry }: Props) {
             </div>
             <div id="stat-generatde">
                 <div id="math-stat-generated">
-                    <p>{`${wording[lang].entropy}: ${entropy.toFixed(2)}bits`}</p>
-                    <p>{`${wording[lang].shanonEntropy}: ${getShanonEntropy()}bits`}</p>
-                    <p>{`${wording[lang].possiblity}: ${getPossibility().toFixed(2)}`}</p>
-                    <p>{`${wording[lang].timecrackTheo}: ${getTimeCracYears().toFixed(2)} ${wording[lang].years} `}</p>
-                    <p>{`${wording[lang].timecrackReel}: ${getTimeCracYearsR().toFixed(2)} ${wording[lang].years}`}</p>
+                    <p>{`${wording[lang].entropy}: ${entropy.toFixed(4)}bits`}</p>
+                    <p>{`${wording[lang].shanonEntropy}: ${getShanonEntropy().toFixed(4)}bits`}</p>
+                    <p>{`${wording[lang].possiblity}: ${getPossibility().toExponential(4)}`}</p>
+                    <p>{`${wording[lang].timecrackTheo}: ${getTimeCracYears().toExponential(4)} ${wording[lang].years} `}</p>
+                    <p>{`${wording[lang].timecrackReel}: ${getTimeCracYearsR().toExponential(4)} ${wording[lang].years}`}</p>
                 </div>
             </div>
         </div>

@@ -54,6 +54,7 @@ function App() {
 
     useEffect(() => {
         async function __setup() {
+            setLang(await invoke("get_selected_lang"));
             setWording(await invoke("wording"));
             console.log("info: wording loaded");
             window.addEventListener("keydown", (event) => {
@@ -97,7 +98,7 @@ function App() {
             const args = _window.split('=')
             switch (args[0]) {
                 case "settings":
-                    return <Settings lang={lang} wording={wording} />
+                    return <Settings lang={lang} wording={wording} setLang={setLang} />
 
                 case "rng-password":
                     return <RngPassword lang={lang} wording={wording} setPasswordResult={setRngPassword} intoEntry={false}/>

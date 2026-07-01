@@ -37,7 +37,15 @@
             "possiblity": "Possibilité",
             "timecrackReel": "Temps réel",
             "timecrackTheo": "Temps théorique",
-            "years": "ans"
+            "years": "ans",
+            "confirmRngPassword": "Confirmer",
+            "shanonEntropy": "Entropie de Shanon",
+            "newEntryName": "Nouvelle entrée",
+
+            "fr": "Français",
+            "en": "Anglais",
+            "jp": "Japonais",
+            "es": "Espagnol"
         },
         "en": {
             "title": "Title",
@@ -71,15 +79,24 @@
             "spaceCharSettings": "Include space character",
             "donotinclude": "Exclude these characters",
             "doinclude": "Include these characters",
-            "lengthPassword": "Length"
+            "lengthPassword": "Length",
+            "entropy": "Entropy",
+            "possiblity": "Possibility",
+            "timecrackReel": "Reel time crack",
+            "timecrackTheo": "Theoric time crak",
+            "years": "years",
+            "confirmRngPassword": "Confirm",
+            "shanonEntropy": "Shanon entropy",
+            "newEntryName": "New entry",
+
+
+            "fr": "French",
+            "en": "English",
+            "jp": "Japanese",
+            "es": "Spanish"
         }
     },
-    "lang": [
-        "fr",
-        "en",
-        "jp",
-        "es"
-    ],
+    "lang": ["fr", "en", "jp", "es"],
     "selected-lang": "en",
     "user-settings": {
         "width_separator": 2000

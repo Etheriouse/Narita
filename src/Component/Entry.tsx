@@ -69,7 +69,7 @@ function Entry({ lang, wording, mod, selectedUID, sFolder, setWindow, setSelecte
                 setDelMod(mod === "del");
             } else {
                 setEntry({
-                    title: "New entry",
+                    title: wording[lang].newEntryName,
                     username: "",
                     url: "",
                     notes: "",

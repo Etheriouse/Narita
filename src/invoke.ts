@@ -34,7 +34,8 @@ export interface Entry {
     uid: string,
 }
 
-export const uid_root: string = "19909a";
+export const uid_root: string = "narita@root-folder-id";
+export const not_uid: string = "narita@not-selected-id";
 
 export interface Stat {
     width_separator: number
@@ -61,116 +62,7 @@ const entrys: Record<string, Array<Entry>> = {
             uid: "narita@uid-5678-1234-90162",
             src: "",
         },
-        {
-            title: "Spotify",
-            username: "lily.music",
-            url: "https://www.spotify.com",
-            notes: "Abonnement Premium Famille",
-            uid: "narita@uid-4821-7834-12903",
-            src: "",
-        },
-        {
-            title: "Amazon",
-            username: "lily.shop",
-            url: "https://www.amazon.fr",
-            notes: "Adresse principale enregistrée",
-            uid: "narita@uid-9145-2783-44561",
-            src: "",
-        },
-        {
-            title: "Discord",
-            username: "lily#4721",
-            url: "https://discord.com",
-            notes: "Compte principal",
-            uid: "narita@uid-6654-9182-11098",
-            src: "",
-        }
-    ],
 
-    "0": [
-        {
-            title: "Gmail",
-            username: "lily@gmail.com",
-            url: "https://mail.google.com",
-            notes: "Email principal",
-            uid: "narita@uid-2245-6612-77890",
-            src: "",
-        },
-        {
-            title: "GitHub",
-            username: "lily-dev",
-            url: "https://github.com",
-            notes: "Compte développement",
-            uid: "narita@uid-3356-8921-66342",
-            src: "",
-        },
-        {
-            title: "Reddit",
-            username: "u/lily_cat",
-            url: "https://www.reddit.com",
-            notes: "Compte perso",
-            uid: "narita@uid-7765-2211-90453",
-            src: "",
-        },
-        {
-            title: "X",
-            username: "@lily_online",
-            url: "https://x.com",
-            notes: "Compte réseaux sociaux",
-            uid: "narita@uid-9012-5567-44321",
-            src: "",
-        },
-        {
-            title: "Proton Mail",
-            username: "lily_secure",
-            url: "https://mail.proton.me",
-            notes: "Mail sécurisé",
-            uid: "narita@uid-5421-8091-66213",
-            src: "",
-        }
-    ],
-
-    "1": [
-        {
-            title: "Steam",
-            username: "LilyFox",
-            url: "https://store.steampowered.com",
-            notes: "Bibliothèque principale",
-            uid: "narita@uid-1198-7765-23001",
-            src: "",
-        },
-        {
-            title: "Epic Games",
-            username: "LilyEpic",
-            url: "https://store.epicgames.com",
-            notes: "Jeux gratuits hebdomadaires",
-            uid: "narita@uid-4412-6678-91234",
-            src: "",
-        },
-        {
-            title: "Minecraft",
-            username: "LilyCraft",
-            url: "https://www.minecraft.net",
-            notes: "Compte Microsoft lié",
-            uid: "narita@uid-9981-2234-77452",
-            src: "",
-        },
-        {
-            title: "Riot Games",
-            username: "Lily#EUW",
-            url: "https://www.riotgames.com",
-            notes: "League of Legends",
-            uid: "narita@uid-7123-8890-66124",
-            src: "",
-        },
-        {
-            title: "PlayStation Network",
-            username: "LilyPSN",
-            url: "https://www.playstation.com",
-            notes: "Compte PS5",
-            uid: "narita@uid-5512-9911-40087",
-            src: "",
-        }
     ]
 };
 
@@ -186,47 +78,7 @@ const MockApi = {
     },
     get_folder_tree: (): Folder => {
         return {
-            name: "internet",
-            src: "",
-            uid: "0",
-            open: true,
-            childes: [
-                {
-                    name: "gaming",
-                    src: "",
-                    uid: "1",
-                    open: false,
-                    childes: []
-                },
-                {
-                    name: "series",
-                    src: "",
-                    uid: "2",
-                    open: false,
-                    childes: [
-                        {
-                            name: "gaming",
-                            src: "",
-                            uid: "5",
-                            open: false,
-                            childes: [{
-                                name: "gaming",
-                                src: "",
-                                uid: "4",
-                                open: false,
-                                childes: []
-                            },]
-                        }
-                    ]
-                },
-                {
-                    name: "social",
-                    src: "",
-                    uid: "3",
-                    open: false,
-                    childes: []
-                }
-            ]
+
         } as Folder
     },
     save_folder_tree: (folder: Folder) => {
@@ -252,6 +104,22 @@ const MockApi = {
     },
     get_uid: (): string => {
         return 'trust-' + (new Date().getMilliseconds());
+    },
+
+    get_selected_lang: (): string => {
+        return "en";
+    },
+    save_selected_lang: (s: string): void => {
+
+    },
+    get_langs: (): Array<string> => {
+        return ["fr", "en", "jp", "es"];
+    },
+    get_name_vault: (): string => {
+        return "Vault";
+    },
+    save_name_vault: (s: string): void => {
+        console.log(s);
     }
 
 }
@@ -294,7 +162,15 @@ const Settings = {
             "possiblity": "Possibilité",
             "timecrackReel": "Temps réel",
             "timecrackTheo": "Temps théorique",
-            "years": "ans"
+            "years": "ans",
+            "confirmRngPassword": "Confirmer",
+            "shanonEntropy": "Entropie de Shanon",
+            "newEntryName": "Nouvelle entrée",
+
+            "fr": "Français",
+            "en": "Anglais",
+            "jp": "Japonais",
+            "es": "Espagnol"
         },
         "en": {
             "title": "Title",
@@ -328,7 +204,21 @@ const Settings = {
             "spaceCharSettings": "Include space character",
             "donotinclude": "Exclude these characters",
             "doinclude": "Include these characters",
-            "lengthPassword": "Length"
+            "lengthPassword": "Length",
+            "entropy": "Entropy",
+            "possiblity": "Possibility",
+            "timecrackReel": "Reel time crack",
+            "timecrackTheo": "Theoric time crak",
+            "years": "years",
+            "confirmRngPassword": "Confirm",
+            "shanonEntropy": "Shanon entropy",
+            "newEntryName": "New entry",
+
+
+            "fr": "French",
+            "en": "English",
+            "jp": "Japanese",
+            "es": "Spanish"
         }
     },
     "lang": [
@@ -338,6 +228,10 @@ const Settings = {
         "es"
     ],
     "selected-lang": "en",
+    "vault": {
+        "name": "Vault",
+        "path": "/tkt"
+    },
     "user-settings": {
         "width_separator": 2000
     }
